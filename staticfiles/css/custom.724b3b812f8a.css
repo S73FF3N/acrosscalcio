@@ -1,0 +1,58 @@
+body {
+    font-family: "Impact", fantasy;
+}
+/* ---------  NAVBAR  ----------*/
+.navbar-brand>img {
+  width: 4vw;
+  height: auto;
+  padding: 0;
+}
+@media (max-width: 767px) {
+    .navbar-brand>img {
+        width: 10vw;
+    }
+}
+
+.nav-item {
+    font-size:30px;
+    color: #f06990;
+    padding:1vw;
+    float:left;
+}
+.navbar-custom {
+    background-color:#092f57;
+    color:#f06990;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#f06990;
+}
+
+.navbar-custom .navbar-nav > .active > a {
+    color: #ffffff;
+    background-color:transparent;
+}
+
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus,
+.navbar-custom .navbar-nav > .open >a,
+.sidebar .navbar-nav > li > a:hover,
+.sidebar .navbar-nav > li > a:focus {
+    text-decoration: none;
+    background-color: #0082CA;
+}
+
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+.navbar-custom .navbar-toggle {
+    background-color:#eeeeee;
+}
+.navbar-custom .icon-bar {
+    background-color:#092f57;
+}
+
+/* ---------  SIDEBAR  ----------*/

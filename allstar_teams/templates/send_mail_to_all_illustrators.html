@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Send mail to all illustrators" %}
+{% endblock %}
+
+{% block content %}
+{{ form.media }}
+<div class="container-fluid">
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+            <div{% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible"{% endif %}> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> {{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="subject" style="transform: translate(0, 0);">{% trans "Subject" %}:</label>
+        <input type="text" id="subject" name="subject">
+        <label for="message" style="transform: translate(0, 0);">{% trans "Message" %}:</label><br>
+        <textarea type="text" id="message" name="message"></textarea><br>
+        <label for="attachement" style="transform: translate(0, 0);">{% trans "Attachement" %}:</label><br>
+        <input type="file" id="attachement" name="attachment" /><br>
+        <input type="submit" value={% trans "Send mail" %} style="margin-top: 1em;">
+    </form>
+</div>
+{% endblock %}

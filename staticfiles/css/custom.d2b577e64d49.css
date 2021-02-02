@@ -1,0 +1,177 @@
+body {
+    font-family: "Impact", fantasy;
+}
+h1 {
+  font-size:40px;
+  color:#f06990;
+}
+h2 {
+  font-size:30px;
+  color:#092f57;
+}
+/* ---------  MARGIN BENEATH NAVBAR  ----------*/
+#content {
+   margin-top:30vh;
+  }
+/* ---------  NAVBAR  ----------*/
+.navbar-brand>img {
+  width: 4vw;
+  height: auto;
+  padding: 0;
+}
+@media (max-width: 767px) {
+    .navbar-brand>img {
+        width: 10vw;
+    }
+}
+
+.nav-item {
+    font-size:30px;
+    color: #f06990;
+    padding:1vw;
+    float:left;
+}
+.navbar-custom {
+    background-color:#092f57;
+    color:#f06990;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#f06990;
+}
+
+.navbar-custom .navbar-nav > .active > a {
+    color: #ffffff;
+    background-color:transparent;
+}
+
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus,
+.navbar-custom .navbar-nav > .open >a {
+    text-decoration: none;
+    background-color: #0082CA;
+}
+
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+.navbar-custom .navbar-toggle {
+    background-color:#eeeeee;
+}
+.navbar-custom .icon-bar {
+    background-color:#092f57;
+}
+
+/* ---------  SIDEBAR  ----------*/
+.sidebar {
+  position: fixed;
+  left:0;
+  top:50%;
+  width:12vw;
+  overflow-y:auto;
+  background-color:#092f57;
+  z-index:1;
+}
+.sidebar > .navbar-nav > li > a {
+  color:#f06990;
+}
+.sidebar > .navbar-nav > li > a:hover {
+  text-decoration: none;
+  background-color: #0082CA;
+}
+
+/* ---------  SHAPE  ----------*/
+.shape {
+  margin-top: 1vh;
+  padding-left:1vh;
+  height: 35vh;
+  width: 100%;
+  background: rgba(240, 105, 144, 1);
+  text-align: left;
+}
+.shape:hover {
+  cursor: pointer;
+  animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both;
+}
+.shape>h2 {
+  position:absolute;
+  z-index:2;
+}
+.shape>img {
+  position: absolute;
+  height: 60%;
+  bottom:0;
+  right:0;
+  opacity:.99;
+  overflow:hidden;
+  z-index:1;
+}
+@keyframes shake {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  33% {
+    transform: translate3d(-6px, 0, 0);
+  }
+
+  66% {
+    transform: translate3d(6px, 0, 0);
+  }
+}
+
+/* ---------  RESPONSIVE  ----------*/
+@media (min-height: 375px) {
+    #content {
+     margin-top:25vh;
+    }
+  }
+  @media (min-height: 667px) {
+    #content {
+     margin-top:12vh;
+    }
+  }
+  @media (min-width: 575px) {
+    h1 {
+      font-size:50px;
+    }
+    .sidebar {
+      width:8vw;
+    }
+  }
+  @media (min-width: 767px) {
+    h1 {
+      font-size:65px;
+    }
+    .sidebar {
+      width:7vw;
+    }
+    .shape {
+      height: 30vh;
+    }
+  }
+  @media (min-width: 991px) {
+    h1 {
+      font-size:80px;
+    }
+    .sidebar {
+      width:6vw;
+    }
+    .shape {
+      height: 25vh;
+    }
+  }
+  @media (min-width: 1199px) {
+    h1 {
+      font-size:100px;
+    }
+    .sidebar {
+      width:5vw;
+    }
+    .shape {
+      height: 20vh;
+    }
+  }

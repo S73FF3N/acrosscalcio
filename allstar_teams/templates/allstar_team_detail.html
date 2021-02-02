@@ -1,0 +1,67 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+    {{ team.name}}
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top:8vw">
+        <h1>{{ team.name }}</h1>
+        <div class="row no-gutters">
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6 illustrator-info text-left">
+                <h4>illustrated by</h4>
+            </div>
+            <div class="col-xl-7 col-lg-7 col-md-5 col-sm-6 col-6 illustrator-info text-align-responsive">
+                <h4>{{ team.illustrated_by.name }}</h4>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 illustrator-info text-right">
+                {% if team.illustrated_by.instagram %}
+                    <a title="insta" target="_blank" href="{{ team.illustrated_by.instagram }}"><i class="fa fa-instagram fa-2x fa-fw" style="color:#092f57;"></i></a>
+                {% endif %}
+                {% if team.illustrated_by.twitter %}
+                    <a title="insta" target="_blank" href="{{ team.illustrated_by.twitter }}"><i class="fa fa-twitter fa-2x fa-fw" style="color:#092f57;"></i></a>
+                {% endif %}
+                {% if team.illustrated_by.webpage %}
+                    <a title="insta" target="_blank" href="{{ team.illustrated_by.webpage }}"><i class="fa fa-globe fa-2x fa-fw" style="color:#092f57;"></i></a>
+                {% endif %}
+                {% if team.illustrated_by.mail %}
+                    <a title="insta" target="_blank" href="mailto:{{ team.illustrated_by.mail }}"><i class="fa fa-envelope fa-2x fa-fw" style="color:#092f57;"></i></a>
+                {% endif %}
+            </div>
+        </div>
+        <!--{% if team.logo_by %}
+        <div class="row no-gutters">
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-5 logo-info text-left">
+                <h5>Logo design</h5>
+            </div>
+            <div class="col-xl-7 col-lg-7 col-md-5 col-sm-6 col-6 logo-info text-align-responsive">
+                <h5>{{ team.logo_by.name }}</h5>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 logo-info text-right">
+                {% if team.logo_by.instagram %}
+                    <a title="insta" target="_blank" href="{{ team.logo_by.instagram }}"><i class="fa fa-instagram fa-2x fa-fw" style="color:#f06990;"></i></a>
+                {% endif %}
+                {% if team.logo_by.twitter %}
+                    <a title="insta" target="_blank" href="{{ team.logo_by.twitter }}"><i class="fa fa-twitter fa-2x fa-fw" style="color:#f06990;"></i></a>
+                {% endif %}
+                {% if team.logo_by.webpage %}
+                    <a title="insta" target="_blank" href="{{ team.logo_by.webpage }}"><i class="fa fa-globe fa-2x fa-fw" style="color:#f06990;"></i></a>
+                {% endif %}
+                {% if team.logo_by.mail %}
+                    <a title="insta" target="_blank" href="mailto:{{ team.logo_by.mail }}"><i class="fa fa-envelope fa-2x fa-fw" style="color:#f06990;"></i></a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}-->
+        <div class="row no-gutters">
+            {% for player in team.players %}
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 player-illustration">
+                    <a href="{% url "allstar_player_detail" player.id player.slug %}">
+                        <img src="{{ player.illustration.url }}" class="image">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

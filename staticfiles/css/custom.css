@@ -1,5 +1,6 @@
 body {
-    font-family: "Impact", fantasy;
+    font-family: "Impact", Tahoma, sans-serif;
+    text-rendering: optimizeLegibility;
 }
 h1 {
   font-size:40px;

@@ -9,14 +9,6 @@
     <div class="container" style="margin-top:8vw">
         <h1>{{ player.name }}</h1>
         <div class="row no-gutters">
-        <!--{% if player.redbubble %}
-            <div class="col-10 col-sm-11 logo-info text-right">
-                <h3>buy this design</h3>
-            </div>
-            <div class="col-2 col-sm-1 logo-info">
-                <a target="_blank" href="{{ player.redbubble }}"><img src="{% static 'img/redbubble.png' %}" class="redbubble-logo" alt=""></a>
-            </div>
-        {% endif %}-->
             <div class="col-12 col-sm-6 col-md-6 player-illustration-detail">
                 <img src="{{ player.illustration.url }}" class="image">
             </div>
@@ -26,22 +18,26 @@
                         <td scope="col"><h4>Birth date:</h4></td>
                         <td scope="col" class="text-right"><h4>{{ player.birth_date }}</h4></td>
                     </tr>
+                    {% if not player.is_manager %}
                     <tr>
                         <td scope="col"><h4>Position:</h4></td>
                         <td scope="col" class="text-right"><h4>{{ player.get_position_display }}</h4></td>
                     </tr>
+                    {% endif %}
                     <tr>
-                        <td scope="col"><h4>{% if player.is_manager == True %} manager{% else %}played{% endif %} for {{ player.team.name }} between:</h4></td>
+                        <td scope="col"><h4>{% if player.is_manager == True %} Manager of{% else %}played for{% endif %} {{ player.team.name }} between:</h4></td>
                         <td scope="col" class="text-right"><h4>{{ player.club_years }}</h4></td>
                     </tr>
                     <tr>
                         <td scope="col"><h4>Games:</h4></td>
                         <td scope="col" class="text-right"><h4>{{ player.games }}</h4></td>
                     </tr>
+                    {% if not player.is_manager %}
                     <tr>
                         <td scope="col"><h4>Goals:</h4></td>
                         <td scope="col" class="text-right"><h4>{{ player.goals }}</h4></td>
                     </tr>
+                    {% endif %}
                     <tr>
                         <td scope="col"><h4>Titles:</h4></td>
                         <td scope="col" class="text-right"><h4>{{ player.honors }}</h4></td>

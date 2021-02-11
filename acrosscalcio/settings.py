@@ -25,7 +25,7 @@ SECRET_KEY = '1w_6*tj%oh8gr#c-s-%1d!8yvp-jbf!se%!@p7+_x4$ki33z1r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['www.across-calcio.cf']
 
 
 # Application definition
@@ -41,9 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'allstar_teams',
-    'shop',
-    'cart',
-    'order',
 
 ]
 
@@ -85,10 +82,10 @@ WSGI_APPLICATION = 'acrosscalcio.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'acrosscalcio',
-        'USER': 'steffen',
-        'PASSWORD': 'St-15@Sc07',
-        'HOST': 'localhost',
+        'NAME': 'S73FF3N$acrosscalcio',
+        'USER': 'S73FF3N',
+        'PASSWORD': 'osna2166',
+        'HOST': 'S73FF3N.mysql.pythonanywhere-services.com',
     }
 }
 
@@ -153,7 +150,9 @@ CART_SESSION_ID = 'cart'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "acrosscalcio@gmail.com"
-EMAIL_HOST_PASSWORD = "St-15@Sc07"
-EMAIL_PORT = 587
+EMAIL_HOST_PASSWORD = "xstdcyobuxycqmld"
 EMAIL_USE_TLS = True
+EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = "acrosscalcio@gmail.com"
+
+FILE_UPLOAD_HANDLERS= ["django.core.files.uploadhandler.TemporaryFileUploadHandler"]

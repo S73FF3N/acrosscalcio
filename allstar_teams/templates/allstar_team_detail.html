@@ -58,7 +58,14 @@
             {% for player in team.players %}
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 player-illustration">
                     <a href="{% url "allstar_player_detail" player.id player.slug %}">
-                        <img src="{{ player.illustration.url }}" class="image">
+                        <img src="{{ player.thumbnail.url }}" class="image">
+                    </a>
+                </div>
+            {% endfor %}
+            {% for manager in team.manager %}
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 player-illustration">
+                    <a href="{% url "allstar_player_detail" manager.id manager.slug %}">
+                        <img src="{{ manager.thumbnail.url }}" class="image">
                     </a>
                 </div>
             {% endfor %}

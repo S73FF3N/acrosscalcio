@@ -1,6 +1,5 @@
-from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView
 from django.core.mail import EmailMessage
 
 from .models import AllstarTeam, Player, Illustrator
@@ -32,7 +31,8 @@ def send_mail_to_all_illustrators(request):
         mail_subject = request.POST.get("subject")
         mail_content = request.POST.get("message")
         mail_content += "<br><br>Instagram: <a href='https://www.instagram.com/across_calcio/'>across_calcio</a>"
-        recipients = Illustrator.objects.values_list('mail', flat=True).distinct()
+        active_illustrators = Illustrator.objects.filter(available=True)
+        recipients = active_illustrators.values_list('mail', flat=True).distinct()
         recipients_str = []
         for r in recipients:
             if r != "":

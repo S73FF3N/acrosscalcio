@@ -1,7 +1,7 @@
-import os
 import datetime
 
 from django.db import models
+from django.urls import reverse
 
 POSITION = (
     ("1", "Goalkeeper"),
@@ -49,7 +49,10 @@ class AllstarTeam(models.Model):
         ordering = ('name',)
 
     def players(self):
-        return self.player_set.filter(available=True)
+        return self.player_set.filter(available=True, is_manager=False)
+
+    def manager(self):
+        return self.player_set.filter(available=True, is_manager=True)
 
     def __str__(self):
         return self.name
@@ -59,6 +62,9 @@ class AllstarTeam(models.Model):
 
 def get_upload_path(instance, filename):
     return '{0}/{1}'.format(instance.team.name, filename)
+
+def get_upload_path_thumbnail(instance, filename):
+    return '{0}/thumbnail/{1}'.format(instance.team.name, filename)
 
 class Player(models.Model):
     name = models.CharField(max_length=100, db_index=True)
@@ -70,12 +76,10 @@ class Player(models.Model):
     is_manager = models.BooleanField(default=False)
     position = models.CharField(max_length=20, choices=POSITION, default="4")
     illustration = models.ImageField(blank=True, upload_to=get_upload_path)
+    thumbnail = models.ImageField(blank=True, upload_to=get_upload_path_thumbnail)
     games = models.IntegerField(default=0)
     goals = models.IntegerField(default=0)
     honors = models.IntegerField(default=0)
-
-    products_available = models.ManyToManyField("shop.Product")
-    redbubble = models.URLField(max_length=200, blank=True)
 
     available = models.BooleanField(default=True)
     created = models.DateField(auto_now_add=True)

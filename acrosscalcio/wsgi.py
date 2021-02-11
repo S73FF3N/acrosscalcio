@@ -8,7 +8,6 @@ path = '/home/S73FF3N/acrosscalcio'
 if path not in sys.path:
     sys.path.insert(0, path)
 
-settings.configure()
 os.environ['DJANGO_SETTINGS_MODULE'] = 'acrosscalcio.settings'
 
 ## Uncomment the lines below depending on your Django version

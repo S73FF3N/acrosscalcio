@@ -25,7 +25,7 @@ SECRET_KEY = '1w_6*tj%oh8gr#c-s-%1d!8yvp-jbf!se%!@p7+_x4$ki33z1r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.across-calcio.cf']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'acrosscalcio.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'S73FF3N$acrosscalcio',
-        'USER': 'S73FF3N',
-        'PASSWORD': 'osna2166',
-        'HOST': 'S73FF3N.mysql.pythonanywhere-services.com',
+        'NAME': 'acrosscalcio',
+        'USER': 'steffen',
+        'PASSWORD': 'St-15@Sc07',
+        'HOST': 'localhost',
     }
 }
 

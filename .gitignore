@@ -7,7 +7,7 @@ media/
 *.mo
 __pycache__
 media
-acrosscalcio/setting.py
+acrosscalcio/settings.py
 
 .idea/**/workspace.xml
 .idea/**/tasks.xml

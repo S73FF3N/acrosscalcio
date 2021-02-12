@@ -12,6 +12,7 @@ POSITION = (
 
 class Country(models.Model):
     name = models.CharField(max_length=200, db_index=True)
+    flag_image = models.ImageField(blank=True, upload_to='flags')
 
     def __str__(self):
         return self.name
@@ -71,12 +72,14 @@ class Player(models.Model):
     birth_date = models.DateField(default=datetime.date(1970, 10, 19))
     death_date = models.DateField(blank=True, null=True)
     club_years = position = models.CharField(max_length=40, null=True, blank=True)
+    nationality = models.ForeignKey(Country, default=1, on_delete=models.CASCADE,)
     slug = models.SlugField(max_length=200, db_index=True)
     team = models.ForeignKey(AllstarTeam, default=1, on_delete=models.CASCADE,)
     is_manager = models.BooleanField(default=False)
     position = models.CharField(max_length=20, choices=POSITION, default="4")
     illustration = models.ImageField(blank=True, upload_to=get_upload_path)
     thumbnail = models.ImageField(blank=True, upload_to=get_upload_path_thumbnail)
+    still_active = models.BooleanField(default=False)
     games = models.IntegerField(default=0)
     goals = models.IntegerField(default=0)
     honors = models.IntegerField(default=0)

@@ -7,10 +7,9 @@
 
 {% block content %}
     <div class="container" style="margin-top:8vw">
-        <span>
-            <h1 style="display:inline;">{{ player.name }}</h1>
-            <img src="{{ player.nationality.flag_image.url }}" class="pull-right" style="display:inline;">
-        </span>
+        <h1>{{ player.name }}
+            <img src="{{ player.nationality.flag_image.url }}" style="height:1em;max-height:64px;vertical-align:middle;">
+        </h1>
         <div class="row no-gutters">
             <div class="col-12 col-sm-6 col-md-6 player-illustration-detail">
                 <img src="{{ player.illustration.url }}" class="image">

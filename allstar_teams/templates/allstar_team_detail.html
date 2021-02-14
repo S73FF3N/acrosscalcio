@@ -15,7 +15,9 @@
             <div class="col-xl-7 col-lg-7 col-md-5 col-sm-6 col-6 illustrator-info text-align-responsive">
                 <span>
                     <h4 style="display:inline;">{{ team.illustrated_by.name }}</h4>
-                    <img src="{{ team.country.flag_image.url }}" width="28" style="display:inline;vertical-align:top;">
+                    {% if team.country.flag_image %}
+                        <img src="{{ team.country.flag_image.url }}" width="28" style="display:inline;vertical-align:top;">
+                    {% endif %}
                 </span>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 illustrator-info text-right">

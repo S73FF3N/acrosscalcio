@@ -26,16 +26,16 @@
             </div>
             <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 illustrator-info text-right">
                 {% if team.illustrated_by.instagram %}
-                    <a title="insta" target="_blank" href="{{ team.illustrated_by.instagram }}"><i class="fa fa-instagram fa-2x fa-fw" style="color:#092f57;"></i></a>
+                    <a title="insta" target="_blank" href="{{ team.illustrated_by.instagram }}"><i class="fab fa-instagram fa-2x fa-fw" style="color:#092f57;"></i></a>
                 {% endif %}
                 {% if team.illustrated_by.twitter %}
-                    <a title="insta" target="_blank" href="{{ team.illustrated_by.twitter }}"><i class="fa fa-twitter fa-2x fa-fw" style="color:#092f57;"></i></a>
+                    <a title="insta" target="_blank" href="{{ team.illustrated_by.twitter }}"><i class="fab fa-twitter fa-2x fa-fw" style="color:#092f57;"></i></a>
                 {% endif %}
                 {% if team.illustrated_by.webpage %}
-                    <a title="insta" target="_blank" href="{{ team.illustrated_by.webpage }}"><i class="fa fa-globe fa-2x fa-fw" style="color:#092f57;"></i></a>
+                    <a title="insta" target="_blank" href="{{ team.illustrated_by.webpage }}"><i class="fas fa-globe fa-2x fa-fw" style="color:#092f57;"></i></a>
                 {% endif %}
                 {% if team.illustrated_by.mail %}
-                    <a title="insta" target="_blank" href="mailto:{{ team.illustrated_by.mail }}"><i class="fa fa-envelope fa-2x fa-fw" style="color:#092f57;"></i></a>
+                    <a title="insta" target="_blank" href="mailto:{{ team.illustrated_by.mail }}"><i class="fas fa-envelope fa-2x fa-fw" style="color:#092f57;"></i></a>
                 {% endif %}
             </div>
         </div>
@@ -67,7 +67,10 @@
             {% for player in team.players %}
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 player-illustration">
                     <a href="{% url "allstar_player_detail" player.id player.slug %}">
-                        <img src="{{ player.thumbnail.url }}" class="image">
+                        <img src="{{ player.thumbnail.url }}" class="image" >
+                        <div class="carousel-caption d-none d-md-block">
+                            <h2 style="background-color: #edbd2b;">{{ player.name }}{% if player.one_club_man %}<br><i title="one club man" class="fas fa-medal" style="color:#092f57;"></i>{% endif %}</h2>
+                        </div>
                     </a>
                 </div>
             {% endfor %}

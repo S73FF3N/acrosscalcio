@@ -45,11 +45,17 @@ h5 {
   margin-top: 1vh;
   width: 97%;
 }
+.carousel-caption{
+opacity: 0;
+}
 .player-illustration:hover .image{
   border-style: none none solid none;
   border-width: 8px;
   border-color:#edbd2b;
   cursor:pointer;
+}
+.player-illustration:hover .carousel-caption{
+opacity:1
 }
 .player-illustration .image {
   width:97%;

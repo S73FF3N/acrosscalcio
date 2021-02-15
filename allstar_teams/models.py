@@ -76,6 +76,7 @@ class Player(models.Model):
     slug = models.SlugField(max_length=200, db_index=True)
     team = models.ForeignKey(AllstarTeam, default=1, on_delete=models.CASCADE,)
     is_manager = models.BooleanField(default=False)
+    one_club_man = models.BooleanField(default=False)
     position = models.CharField(max_length=20, choices=POSITION, default="4")
     illustration = models.ImageField(blank=True, upload_to=get_upload_path)
     thumbnail = models.ImageField(blank=True, upload_to=get_upload_path_thumbnail)

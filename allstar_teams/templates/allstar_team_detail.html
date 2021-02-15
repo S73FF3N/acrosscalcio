@@ -78,6 +78,9 @@
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 player-illustration">
                     <a href="{% url "allstar_player_detail" manager.id manager.slug %}">
                         <img src="{{ manager.thumbnail.url }}" class="image">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h2 style="background-color: #edbd2b;">{{ manager.name }}{% if manager.one_club_man %}<br><i title="one club man" class="fas fa-medal" style="color:#092f57;"></i>{% endif %}</h2>
+                        </div>
                     </a>
                 </div>
             {% endfor %}

@@ -39,30 +39,17 @@
                 {% endif %}
             </div>
         </div>
-        <!--{% if team.logo_by %}
         <div class="row no-gutters">
-            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-5 logo-info text-left">
-                <h5>Logo design</h5>
-            </div>
-            <div class="col-xl-7 col-lg-7 col-md-5 col-sm-6 col-6 logo-info text-align-responsive">
-                <h5>{{ team.logo_by.name }}</h5>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 logo-info text-right">
-                {% if team.logo_by.instagram %}
-                    <a title="insta" target="_blank" href="{{ team.logo_by.instagram }}"><i class="fa fa-instagram fa-2x fa-fw" style="color:#f06990;"></i></a>
-                {% endif %}
-                {% if team.logo_by.twitter %}
-                    <a title="insta" target="_blank" href="{{ team.logo_by.twitter }}"><i class="fa fa-twitter fa-2x fa-fw" style="color:#f06990;"></i></a>
-                {% endif %}
-                {% if team.logo_by.webpage %}
-                    <a title="insta" target="_blank" href="{{ team.logo_by.webpage }}"><i class="fa fa-globe fa-2x fa-fw" style="color:#f06990;"></i></a>
-                {% endif %}
-                {% if team.logo_by.mail %}
-                    <a title="insta" target="_blank" href="mailto:{{ team.logo_by.mail }}"><i class="fa fa-envelope fa-2x fa-fw" style="color:#f06990;"></i></a>
-                {% endif %}
+            <div class="col-12 logo-info text-left">
+                <span>
+                    <i style="display:inline;" title="honors" class="fas fa-trophy fa-2x fa-fw"></i>
+                    <h4  title="national honors" style="display:inline;">{{ team.national_honors }}</h4>
+                    <i title="national honors" class="fas fa-flag fa-fw"></i>
+                    <h4  title="international honors" style="display:inline;">+ {{ team.international_honors }}</h4>
+                    <i title="international honors" class="fas fa-globe-europe fa-fw"></i>
+                </span>
             </div>
         </div>
-        {% endif %}-->
         <div class="row no-gutters">
             {% for player in team.players %}
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 player-illustration">

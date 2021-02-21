@@ -25,7 +25,10 @@ h5 {
 }
 .logo-info {
   background: rgba(9, 47, 87, 1);
-  color: rgba(240, 105, 144, 1);
+  color: #edbd2b;
+}
+.logo-info h4 {
+    color: #edbd2b;
 }
 .text-left {
   text-align: left;

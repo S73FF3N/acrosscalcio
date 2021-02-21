@@ -50,10 +50,13 @@ class AllstarTeam(models.Model):
         ordering = ('name',)
 
     def players(self):
-        return self.player_set.filter(available=True, is_manager=False)
+        return self.player_set.filter(available=True, is_manager=False).exclude(illustration='')
 
     def manager(self):
-        return self.player_set.filter(available=True, is_manager=True)
+        return self.player_set.filter(available=True, is_manager=True).exclude(illustration='')
+
+    def honorable_mentions(self):
+        return self.player_set.filter(available=True, illustration='')
 
     def __str__(self):
         return self.name

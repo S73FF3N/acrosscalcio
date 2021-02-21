@@ -72,5 +72,58 @@
                 </div>
             {% endfor %}
         </div>
+        {% if team.honorable_mentions %}
+        <div class="row no-gutters">
+            <div class="col-12 logo-info text-left">
+                <h4>Honorable mentions</h4>
+            </div>
+            <div class="col-xl-4 col-lg-3 col-md-4 col-sm-6 col-6 illustrator-info text-left">
+                <h4>Name</h4>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6 illustrator-info text-left">
+                <h4>Birth date</h4>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6 illustrator-info text-left">
+                <h4>Death date</h4>
+            </div>
+            <div class="col-xl-1 col-lg-1 col-md-3 col-sm-6 col-6 illustrator-info text-left">
+                <h4>Position</h4>
+            </div>
+            <div class="col-xl-1 col-lg-1 col-md-3 col-sm-6 col-6 illustrator-info text-left">
+                <h4>Games</h4>
+            </div>
+            <div class="col-xl-1 col-lg-1 col-md-3 col-sm-6 col-6 illustrator-info text-left">
+                <h4>Goals</h4>
+            </div>
+            <div class="col-xl-1 col-lg-1 col-md-3 col-sm-6 col-6 illustrator-info text-left">
+                <h4>Honors</h4>
+            </div>
+            {% for m in team.honorable_mentions %}
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                    <h4>{{ m.name }}</h4>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
+                    <h4>{{ m.birth_date }}</h4>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
+                    {% if m.death_date %}
+                        <h4>{{ m.death_date }}</h4>
+                    {% endif %}
+                </div>
+                <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6 col-12">
+                    <h4>{{ m.get_position_display }}</h4>
+                </div>
+                <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6 col-12">
+                    <h4>{{ m.games }}</h4>
+                </div>
+                <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6 col-12">
+                    <h4>{{ m.goals }}</h4>
+                </div>
+                <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6 col-12">
+                    <h4>{{ m.honors }}</h4>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
 {% endblock %}

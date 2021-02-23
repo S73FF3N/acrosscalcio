@@ -115,7 +115,11 @@
                     <h4>{{ m.club_years }}</h4>
                 </div>
                 <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
-                    <h4>{{ m.get_position_display }}</h4>
+                    {% if m.is_manager %}
+                        <h4>Manager</h4>
+                    {% else %}
+                        <h4>{{ m.get_position_display }}</h4>
+                    {% endif %}
                 </div>
                 <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6 col-12">
                     <h4>{{ m.games }}{% if m.still_active %}+{% endif%}</h4>

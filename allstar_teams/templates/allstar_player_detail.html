@@ -12,7 +12,7 @@
                 <i title="one club man" class="fas fa-medal"></i>
             {% endif %}
             {% if player.nationality.flag_image %}
-                <img src="{{ player.nationality.flag_image.url }}" style="height:1em;max-height:64px;vertical-align:middle;">
+                <img  title="{{ player.nationality }}" src="{{ player.nationality.flag_image.url }}" style="height:1em;max-height:64px;vertical-align:middle;">
             {% endif %}
         </h1>
         <div class="row no-gutters">

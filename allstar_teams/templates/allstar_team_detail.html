@@ -9,7 +9,7 @@
     <div class="container" style="margin-top:8vw">
         <h1>{{ team.name }}
             {% if team.country.flag_image %}
-                <img src="{{ team.country.flag_image.url }}" style="height:1em;max-height:64px;vertical-align:middle;">
+                <img title="{{ team.country }}" src="{{ team.country.flag_image.url }}" style="height:1em;max-height:64px;vertical-align:middle;">
             {% endif %}
         </h1>
         <div class="row no-gutters">
@@ -20,7 +20,7 @@
                 <span>
                     <h4 style="display:inline;">{{ team.illustrated_by.name }}</h4>
                     {% if team.illustrated_by.country.flag_image %}
-                        <img src="{{ team.illustrated_by.country.flag_image.url }}" width="28" style="display:inline;vertical-align:top;">
+                        <img  title="{{ team.illustrated_by.country }}" src="{{ team.illustrated_by.country.flag_image.url }}" width="28" style="display:inline;vertical-align:top;">
                     {% endif %}
                 </span>
             </div>
@@ -80,47 +80,51 @@
             <div class="col-xl-4 col-lg-3 col-md-4 col-sm-6 col-6 illustrator-info text-left">
                 <h4>Name</h4>
             </div>
-            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6 illustrator-info text-left">
-                <h4>Birth date</h4>
+            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 illustrator-info text-left">
+                <h4>Club years</h4>
             </div>
-            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6 illustrator-info text-left">
-                <h4>Death date</h4>
-            </div>
-            <div class="col-xl-1 col-lg-1 col-md-3 col-sm-6 col-6 illustrator-info text-left">
+            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 illustrator-info text-left">
                 <h4>Position</h4>
             </div>
-            <div class="col-xl-1 col-lg-1 col-md-3 col-sm-6 col-6 illustrator-info text-left">
+            <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6 col-6 illustrator-info text-left">
                 <h4>Games</h4>
             </div>
-            <div class="col-xl-1 col-lg-1 col-md-3 col-sm-6 col-6 illustrator-info text-left">
+            <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6 col-6 illustrator-info text-left">
                 <h4>Goals</h4>
             </div>
-            <div class="col-xl-1 col-lg-1 col-md-3 col-sm-6 col-6 illustrator-info text-left">
-                <h4>Honors</h4>
+            <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6 col-6 illustrator-info text-left">
+                <h4>Titles</h4>
             </div>
             {% for m in team.honorable_mentions %}
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                    <h4>{{ m.name }}</h4>
+                    <span>
+                        <h4 style="display:inline;" title="{{ m.birth_date }}">{{ m.name }}
+                            {% if m.one_club_man %}
+                                <i title="one club man" class="fas fa-medal"></i>
+                            {% endif %}
+                            {% if m.death_date %}
+                                <i title="{{ m.death_date }}" class="fas fa-cross"></i>
+                            {% endif %}
+                        </h4>
+                        {% if m.nationality.flag_image %}
+                            <img title="{{ m.nationality }}" src="{{ m.nationality.flag_image.url }}" width="28" style="display:inline;vertical-align:top;">
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <h4>{{ m.club_years }}</h4>
                 </div>
                 <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
-                    <h4>{{ m.birth_date }}</h4>
-                </div>
-                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12">
-                    {% if m.death_date %}
-                        <h4>{{ m.death_date }}</h4>
-                    {% endif %}
-                </div>
-                <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6 col-12">
                     <h4>{{ m.get_position_display }}</h4>
                 </div>
                 <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6 col-12">
-                    <h4>{{ m.games }}</h4>
+                    <h4>{{ m.games }}{% if m.still_active %}+{% endif%}</h4>
                 </div>
                 <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6 col-12">
-                    <h4>{{ m.goals }}</h4>
+                    <h4>{{ m.goals }}{% if m.still_active %}+{% endif%}</h4>
                 </div>
                 <div class="col-xl-1 col-lg-1 col-md-4 col-sm-6 col-12">
-                    <h4>{{ m.honors }}</h4>
+                    <h4>{{ m.honors }}{% if m.still_active %}+{% endif%}</h4>
                 </div>
             {% endfor %}
         </div>

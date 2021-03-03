@@ -47,3 +47,9 @@ def send_mail_to_all_illustrators(request):
     else:
         response = render(request, 'send_mail_to_all_illustrators.html', {})
     return response
+
+def privacy(request):
+    return render(request, 'privacy.html', {})
+
+def disclaimer(request):
+    return render(request, 'disclaimer.html', {})

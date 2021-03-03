@@ -14,6 +14,30 @@ h3 {
   font-size:20px;
   padding-top:2vw;
 }
+@media (min-width: 575px) {
+    h3 {
+      font-size:22px;
+      padding-top:0;
+    }
+  }
+  @media (min-width: 767px) {
+    h3 {
+      font-size:24px;
+      padding-top:0;
+    }
+  }
+  @media (min-width: 991px) {
+    h3 {
+      font-size:26px;
+      padding-top:0;
+    }
+  }
+  @media (min-width: 1199px) {
+    h3 {
+      font-size:28px;
+      padding-top:1vw;
+    }
+  }
 h4 {
   color:#092f57;
 }
@@ -63,10 +87,6 @@ opacity:1
 .player-illustration .image {
   width:97%;
 }
-/* ---------  MARGIN BENEATH NAVBAR  ----------*/
-#content {
-   margin-top:30vh;
-  }
 /* ---------  NAVBAR  ----------*/
 .navbar-brand>img {
   width: 4vw;
@@ -118,7 +138,13 @@ opacity:1
 .navbar-custom .icon-bar {
     background-color:#092f57;
 }
-
+/* ---------  FOOTER  ----------*/
+.footer-item {
+    font-size:20px;
+    color: #edbd2b;
+    padding:1vw;
+    float:left;
+}
 /* ---------  SIDEBAR  ----------*/
 .sidebar {
   position: fixed;

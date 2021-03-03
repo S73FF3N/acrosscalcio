@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container" style="margin-top:8vw">
+    <div class="container py-1">
         <h1>{{ team.name }}
             {% if team.country.flag_image %}
                 <img title="{{ team.country }}" src="{{ team.country.flag_image.url }}" style="height:1em;max-height:64px;vertical-align:middle;">

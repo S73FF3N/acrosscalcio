@@ -3,8 +3,13 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="">
-  <meta name="author" content="across_calcio">
+  <meta name="description" content="{% block description %}{% endblock %}">
+  <meta name="author" content="Steffen Schwarzwald">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title %}{% endblock %}</title>
+
+  <base href="/">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-190717478-1"></script>
@@ -17,10 +22,6 @@
   </script>
   <!-- ADSENSE -->
   <script data-ad-client="ca-pub-6547788364637663" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-  <title>{% block title %}{% endblock %}</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <!-- Bootstrap -->
 

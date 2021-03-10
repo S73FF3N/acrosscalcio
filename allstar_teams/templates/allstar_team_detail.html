@@ -1,6 +1,9 @@
 {% extends "index.html" %}
 {% load static %}
 
+{% block description %}
+    The best players in the history of {{ team.name}} illustrated by {{ team.illustrated_by.name }}.
+{% endblock %}
 {% block title %}
     {{ team.name}}
 {% endblock %}

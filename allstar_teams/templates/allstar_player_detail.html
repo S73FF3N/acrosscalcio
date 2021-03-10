@@ -1,6 +1,9 @@
 {% extends "index.html" %}
 {% load static %}
 
+{% block description %}
+    {{ player.team.name }} Allstar: {{ player.name}}
+{% endblock %}
 {% block title %}
     {{ player.name}}
 {% endblock %}

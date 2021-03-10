@@ -19,6 +19,13 @@
             {% endif %}
         </h1>
         <div class="row no-gutters">
+            <div class="col-12">
+                <h4 style="color:#092f57;">
+                    <a href="{% url 'club_allstar_team_list' %}" style="text-decoration:none; color:#092f57;">Club Allstar Teams</a> >
+                    <a href="{% url 'allstar_team_detail'  id=player.team.id slug=player.team.slug %}" style="text-decoration:none; color:#092f57;">{{ player.team.name }}</a> >
+                    {{ player.name }}
+                </h4>
+            </div>
             <div class="col-12 col-sm-6 col-md-6 player-illustration-detail">
                 <img src="{{ player.illustration.url }}" class="image">
             </div>

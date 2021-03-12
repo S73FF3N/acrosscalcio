@@ -62,7 +62,7 @@ class AllstarTeam(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('allstar_teams:team_players', args=[self.id,])
+        return reverse('allstar_team_detail', args=[self.id, self.slug])
 
 def get_upload_path(instance, filename):
     return '{0}/{1}'.format(instance.team.name, filename)
@@ -97,3 +97,6 @@ class Player(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('allstar_player_detail', args=[self.id, self.slug])

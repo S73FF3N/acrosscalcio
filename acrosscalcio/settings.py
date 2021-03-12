@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'widget_tweaks',
     'allstar_teams',
 
@@ -156,3 +158,5 @@ EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = "acrosscalcio@gmail.com"
 
 FILE_UPLOAD_HANDLERS= ["django.core.files.uploadhandler.TemporaryFileUploadHandler"]
+
+SITE_ID = 1

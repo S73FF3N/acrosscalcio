@@ -5,7 +5,6 @@ from . import views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-#router.register(r'countries', views.CountriesViewSet)
 
 urlpatterns = [
     url(r'^$', views.AllstarTeamView.as_view(), name='club_allstar_team_list'),

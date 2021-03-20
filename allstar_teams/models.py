@@ -70,12 +70,29 @@ def get_upload_path(instance, filename):
 def get_upload_path_thumbnail(instance, filename):
     return '{0}/thumbnail/{1}'.format(instance.team.name, filename)
 
-class Player(models.Model):
+class Person(models.Model):
     name = models.CharField(max_length=100, db_index=True)
-    birth_date = models.DateField(default=datetime.date(1970, 10, 19))
+    birth_date = models.DateField(default=datetime.date(1969, 10, 19))
     death_date = models.DateField(blank=True, null=True)
+    nationality = models.ForeignKey(Country, default=1, on_delete=models.CASCADE, )
+
+    available = models.BooleanField(default=True)
+    created = models.DateField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
+
+    class Meta:
+        ordering = ('name',)
+
+    def __str__(self):
+        return self.name
+
+class Player(models.Model):
+    person = models.ForeignKey(Person, default=1, on_delete=models.CASCADE, )
+    name = models.CharField(max_length=100, db_index=True) # to be replaced by person
+    birth_date = models.DateField(default=datetime.date(1970, 10, 19)) # to be replaced by person
+    death_date = models.DateField(blank=True, null=True) # to be replaced by person
     club_years = position = models.CharField(max_length=40, null=True, blank=True)
-    nationality = models.ForeignKey(Country, default=1, on_delete=models.CASCADE,)
+    nationality = models.ForeignKey(Country, default=1, on_delete=models.CASCADE,) # to be replaced by person
     slug = models.SlugField(max_length=200, db_index=True)
     team = models.ForeignKey(AllstarTeam, default=1, on_delete=models.CASCADE,)
     is_manager = models.BooleanField(default=False)

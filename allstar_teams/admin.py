@@ -2,12 +2,9 @@ from django.contrib import admin
 from django.shortcuts import redirect
 from django import forms
 
-from .models import Country, AllstarTeam, Player, Illustrator
+from .models import Country, AllstarTeam, Player, Illustrator, Person
 
 from PIL import Image
-import logging
-
-logger = logging.getLogger(__name__)
 
 class PlayerForm(forms.ModelForm):
     class Meta:
@@ -50,10 +47,26 @@ class AllstarTeamAdmin(admin.ModelAdmin):
 admin.site.register(AllstarTeam, AllstarTeamAdmin)
 
 class PlayerAdmin(admin.ModelAdmin):
+    actions = ['create_persons']
+
+    def create_persons(self, request, queryset):
+        player = Player.objects.all()
+        for p in player:
+            person = Person(name=p.name, birth_date=p.birth_date, death_date=p.death_date, nationality=p.nationality)
+            person.save()
+            p.person = person
+            p.save()
+        return redirect("/admin")
+
     list_display = ['name', 'team', 'created', 'updated', 'available']
     list_editable = ['available']
     form = PlayerForm
 admin.site.register(Player, PlayerAdmin)
+
+class PersonAdmin(admin.ModelAdmin):
+    list_display = ['name', 'created', 'updated', 'available']
+    list_editable = ['available']
+admin.site.register(Person, PersonAdmin)
 
 class IllustratorAdmin(admin.ModelAdmin):
     actions = ['send_mail_to_all_illustrators']

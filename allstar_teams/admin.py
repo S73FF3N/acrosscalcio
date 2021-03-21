@@ -5,6 +5,8 @@ from django import forms
 from .models import Country, AllstarTeam, Player, Illustrator, Person
 
 from PIL import Image
+import logging
+logger = logging.getLogger(__name__)
 
 class PlayerForm(forms.ModelForm):
     class Meta:

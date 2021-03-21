@@ -10,20 +10,26 @@
 
 {% block content %}
     <div class="container py-1">
-        <h1>{{ player.name }}
-            {% if player.one_club_man %}
-                <i title="one club man" class="fas fa-medal"></i>
-            {% endif %}
-            {% if player.nationality.flag_image %}
-                <img  title="{{ player.nationality }}" src="{{ player.nationality.flag_image.url }}" style="height:1em;max-height:64px;vertical-align:middle;">
-            {% endif %}
-        </h1>
+        <span>
+            <h1 style="display:inline;">{{ player.person.name }}</h1>
+            <h2 style="display:inline;">
+                {% if player.one_club_man %}
+                    <i title="one club man" class="fas fa-medal fa-2x" style="vertical-align:top;"></i>
+                {% endif %}
+                {% if player.person.death_date %}
+                    <i title="{{ player.person.death_date }}" class="fas fa-cross fa-2x" style="vertical-align:top;"></i>
+                {% endif %}
+                {% if player.person.nationality.flag_image %}
+                    <img  title="{{ player.person.nationality }}" src="{{ player.person.nationality.flag_image.url }}" style="height:2em;max-height:64px;vertical-align:top;">
+                {% endif %}
+            </h2>
+        </span>
         <div class="row no-gutters">
             <div class="col-12">
                 <h4 style="color:#092f57;">
                     <a href="{% url 'club_allstar_team_list' %}" style="text-decoration:none; color:#092f57;">Club Allstar Teams</a> >
                     <a href="{% url 'allstar_team_detail'  id=player.team.id slug=player.team.slug %}" style="text-decoration:none; color:#092f57;">{{ player.team.name }}</a> >
-                    {{ player.name }}
+                    {{ player.person.name }}
                 </h4>
             </div>
             <div class="col-12 col-sm-6 col-md-6 player-illustration-detail">
@@ -33,7 +39,7 @@
                 <table class="table table-hover">
                     <tr>
                         <td scope="col"><h4>Birth date:</h4></td>
-                        <td scope="col" class="text-right"><h4>{{ player.birth_date }}</h4></td>
+                        <td scope="col" class="text-right"><h4>{{ player.person.birth_date }}</h4></td>
                     </tr>
                     {% if not player.is_manager %}
                     <tr>
@@ -60,21 +66,16 @@
                         <td scope="col" class="text-right"><h4>{{ player.honors }}{% if player.still_active %}+{% endif%}</h4></td>
                     </tr>
                 </table>
-                <!--<table>
-                    <tr class="logo-info">
-                        <th><h3>Product</h3></th>
-                        <th><h3>Price</h3></th>
-                        <th> </th>
-                    </tr>
-                    {% for product in player.products_available.all %}
-                    <tr>
-                        <td><h4>{{ product.name }}</h4></td>
-                        <td><h4>{{ product.price }}€</h4></td>
-                        <td><a href="{% url "cart:cart_add_no_form" product.id player.id %}"  class="pull-right btn btn-cart btn-sm"><i class="fa fa-cart-plus fa-2x fa-fw" style="color:#f06990;"></i></a></td>
-                    </tr>
+                {% if same_person %}
+                    <div class="col-12 illustrator-info text-left">
+                        <h4>also represents</h4>
+                    </div>
+                    {% for s in same_person %}
+                        <h4><a href="{% url 'allstar_player_detail'  id=s.id slug=s.slug %}" style="text-decoration:none; color:#092f57;">{{ s.team.name }}</a></h4>
                     {% endfor %}
-                </table>-->
+                {% endif %}
             </div>
+
         </div>
     </div>
 {% endblock %}

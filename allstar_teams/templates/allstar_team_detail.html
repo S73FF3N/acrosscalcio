@@ -10,11 +10,14 @@
 
 {% block content %}
     <div class="container py-1">
-        <h1>{{ team.name }}
-            {% if team.country.flag_image %}
-                <img title="{{ team.country }}" src="{{ team.country.flag_image.url }}" style="height:1em;max-height:64px;vertical-align:middle;">
-            {% endif %}
-        </h1>
+        <span>
+            <h1 style="display:inline;">{{ team.name }}</h1>
+            <h2 style="display:inline;">
+                {% if team.country.flag_image %}
+                    <img title="{{ team.country }}" src="{{ team.country.flag_image.url }}" style="height:2em;max-height:64px;vertical-align:top;">
+                {% endif %}
+            </h2>
+        </span>
         <div class="row no-gutters">
             <div class="col-12">
                 <h4 style="color:#092f57;">
@@ -65,7 +68,7 @@
                     <a href="{% url "allstar_player_detail" player.id player.slug %}">
                         <img src="{{ player.thumbnail.url }}" class="image" >
                         <div class="carousel-caption d-none d-md-block">
-                            <h2 style="background-color: #edbd2b;">{{ player.name }}{% if player.one_club_man %}<br><i title="one club man" class="fas fa-medal" style="color:#092f57;"></i>{% endif %}</h2>
+                            <h2 style="background-color: #edbd2b;">{{ player.person.name }}{% if player.one_club_man %}<br><i title="one club man" class="fas fa-medal" style="color:#092f57;"></i>{% endif %}</h2>
                         </div>
                     </a>
                 </div>
@@ -75,7 +78,7 @@
                     <a href="{% url "allstar_player_detail" manager.id manager.slug %}">
                         <img src="{{ manager.thumbnail.url }}" class="image">
                         <div class="carousel-caption d-none d-md-block">
-                            <h2 style="background-color: #edbd2b;">{{ manager.name }}{% if manager.one_club_man %}<br><i title="one club man" class="fas fa-medal" style="color:#092f57;"></i>{% endif %}</h2>
+                            <h2 style="background-color: #edbd2b;">{{ manager.person.name }}{% if manager.one_club_man %}<br><i title="one club man" class="fas fa-medal" style="color:#092f57;"></i>{% endif %}</h2>
                         </div>
                     </a>
                 </div>
@@ -107,16 +110,16 @@
             {% for m in team.honorable_mentions %}
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <span>
-                        <h4 style="display:inline;" title="{{ m.birth_date }}">{{ m.name }}
+                        <h4 style="display:inline;" title="{{ m.birth_date }}">{{ m.person.name }}
                             {% if m.one_club_man %}
                                 <i title="one club man" class="fas fa-medal"></i>
                             {% endif %}
-                            {% if m.death_date %}
-                                <i title="{{ m.death_date }}" class="fas fa-cross"></i>
+                            {% if m.person.death_date %}
+                                <i title="{{ m.person.death_date }}" class="fas fa-cross"></i>
                             {% endif %}
                         </h4>
-                        {% if m.nationality.flag_image %}
-                            <img title="{{ m.nationality }}" src="{{ m.nationality.flag_image.url }}" width="28" style="display:inline;vertical-align:top;">
+                        {% if m.person.nationality.flag_image %}
+                            <img title="{{ m.person.nationality }}" src="{{ m.person.nationality.flag_image.url }}" width="28" style="display:inline;vertical-align:top;">
                         {% endif %}
                     </span>
                 </div>

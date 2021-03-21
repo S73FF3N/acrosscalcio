@@ -109,6 +109,11 @@ class Player(models.Model):
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
+    def same_person(self):
+        same_person = Player.objects.filter(person=self.person)
+        same_person = same_person.exclude(id=self.id)
+        return same_person
+
     class Meta:
         ordering = ('position',)
 

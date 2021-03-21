@@ -111,6 +111,7 @@ class Player(models.Model):
 
     def same_person(self):
         same_person = Player.objects.filter(person=self.person)
+        same_person = same_person.exclude(illustration="")
         same_person = same_person.exclude(id=self.id)
         return same_person
 

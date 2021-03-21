@@ -71,7 +71,9 @@
                         <h4>also represents</h4>
                     </div>
                     {% for s in same_person %}
-                        <h4><a href="{% url 'allstar_player_detail'  id=s.id slug=s.slug %}" style="text-decoration:none; color:#092f57;">{{ s.team.name }}{% if s.is_manager %} (as manager){% endif %}</a></h4>
+                        {% if s.illustration %}
+                            <h4><a href="{% url 'allstar_player_detail'  id=s.id slug=s.slug %}" style="text-decoration:none; color:#092f57;">{{ s.team.name }}{% if s.is_manager %} (as manager){% endif %}</a></h4>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
             </div>

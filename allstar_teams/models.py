@@ -88,11 +88,11 @@ class Person(models.Model):
 
 class Player(models.Model):
     person = models.ForeignKey(Person, default=1, on_delete=models.CASCADE, )
-    name = models.CharField(max_length=100, db_index=True) # to be replaced by person
-    birth_date = models.DateField(default=datetime.date(1970, 10, 19)) # to be replaced by person
-    death_date = models.DateField(blank=True, null=True) # to be replaced by person
+    #name = models.CharField(max_length=100, db_index=True) # to be replaced by person
+    #birth_date = models.DateField(default=datetime.date(1970, 10, 19)) # to be replaced by person
+    #death_date = models.DateField(blank=True, null=True) # to be replaced by person
     club_years = position = models.CharField(max_length=40, null=True, blank=True)
-    nationality = models.ForeignKey(Country, default=1, on_delete=models.CASCADE,) # to be replaced by person
+    #nationality = models.ForeignKey(Country, default=1, on_delete=models.CASCADE,) # to be replaced by person
     slug = models.SlugField(max_length=200, db_index=True)
     team = models.ForeignKey(AllstarTeam, default=1, on_delete=models.CASCADE,)
     is_manager = models.BooleanField(default=False)
@@ -119,7 +119,7 @@ class Player(models.Model):
         ordering = ('position',)
 
     def __str__(self):
-        return self.name
+        return self.person.name
 
     def get_absolute_url(self):
         return reverse('allstar_player_detail', args=[self.id, self.slug])

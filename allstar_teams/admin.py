@@ -60,7 +60,7 @@ class PlayerAdmin(admin.ModelAdmin):
             p.save()
         return redirect("/admin")
 
-    list_display = ['name', 'team', 'created', 'updated', 'available']
+    list_display = ['person', 'team', 'created', 'updated', 'available']
     list_editable = ['available']
     form = PlayerForm
 admin.site.register(Player, PlayerAdmin)

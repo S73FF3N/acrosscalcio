@@ -88,11 +88,7 @@ class Person(models.Model):
 
 class Player(models.Model):
     person = models.ForeignKey(Person, default=1, on_delete=models.CASCADE, )
-    #name = models.CharField(max_length=100, db_index=True) # to be replaced by person
-    #birth_date = models.DateField(default=datetime.date(1970, 10, 19)) # to be replaced by person
-    #death_date = models.DateField(blank=True, null=True) # to be replaced by person
     club_years = position = models.CharField(max_length=40, null=True, blank=True)
-    #nationality = models.ForeignKey(Country, default=1, on_delete=models.CASCADE,) # to be replaced by person
     slug = models.SlugField(max_length=200, db_index=True)
     team = models.ForeignKey(AllstarTeam, default=1, on_delete=models.CASCADE,)
     is_manager = models.BooleanField(default=False)
@@ -114,6 +110,24 @@ class Player(models.Model):
         same_person = same_person.exclude(illustration="")
         same_person = same_person.exclude(id=self.id)
         return same_person
+
+    def calculate_importance(self):
+        years_for_club_list = self.club_years.replace(",", " ").replace("-", " ")
+        years_for_club_list = [int(s) for s in years_for_club_list.split() if s.isdigit()]
+        first = True
+        years_for_club = 0
+        if (len(years_for_club_list) % 2) != 0:
+            years_for_club = int(datetime.datetime.now().year) - years_for_club_list[-1]
+            years_for_club_list.pop()
+        for y in range(len(years_for_club_list), 1, -2):
+            years_for_club += years_for_club_list[y-1] - years_for_club_list[y-2]
+        contribution = (self.games / years_for_club) * (1/50)
+        club_age = int(datetime.datetime.now().year) - self.team.founded_in
+        club_titles = self.team.national_honors + self.team.international_honors
+        importance = "{:.2f}".format(((contribution * self.honors) / years_for_club) * (club_age / club_titles))
+        return importance
+
+
 
     class Meta:
         ordering = ('position',)

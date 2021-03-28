@@ -25,7 +25,8 @@ def allstar_team_detail(request, id, slug):
 def allstar_player_detail(request, id, slug):
     player = get_object_or_404(Player, id=id, slug=slug)
     same_person = player.same_person()
-    return render(request, 'allstar_player_detail.html', {'player': player, 'same_person': same_person})
+    importance = player.calculate_importance()
+    return render(request, 'allstar_player_detail.html', {'player': player, 'same_person': same_person, 'importance': importance})
 
 def send_mail_to_all_illustrators(request):
     if request.method == "POST":

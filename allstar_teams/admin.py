@@ -49,7 +49,7 @@ class AllstarTeamAdmin(admin.ModelAdmin):
 admin.site.register(AllstarTeam, AllstarTeamAdmin)
 
 class PlayerAdmin(admin.ModelAdmin):
-    actions = ['create_persons']
+    """actions = ['create_persons']
 
     def create_persons(self, request, queryset):
         player = Player.objects.all()
@@ -58,7 +58,7 @@ class PlayerAdmin(admin.ModelAdmin):
             person.save()
             p.person = person
             p.save()
-        return redirect("/admin")
+        return redirect("/admin")"""
 
     list_display = ['person', 'team', 'created', 'updated', 'available']
     list_editable = ['available']

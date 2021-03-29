@@ -123,7 +123,10 @@ class Player(models.Model):
         contribution = (self.games / years_for_club) * (1/50)
         club_age = int(datetime.datetime.now().year) - self.team.founded_in
         club_titles = self.team.national_honors + self.team.international_honors
-        importance = ((contribution * self.honors) / years_for_club) * (club_age / club_titles)
+        try:
+            importance = ((contribution * self.honors) / years_for_club) * (club_age / club_titles)
+        except:
+            importance = 0
         #importance = "{:.2f}".format(((contribution * self.honors) / years_for_club) * (club_age / club_titles))
         return importance
 

@@ -114,7 +114,6 @@ class Player(models.Model):
     def calculate_importance(self):
         years_for_club_list = self.club_years.replace(",", " ").replace("-", " ")
         years_for_club_list = [int(s) for s in years_for_club_list.split() if s.isdigit()]
-        first = True
         years_for_club = 0
         if (len(years_for_club_list) % 2) != 0:
             years_for_club = int(datetime.datetime.now().year) - years_for_club_list[-1]
@@ -124,8 +123,18 @@ class Player(models.Model):
         contribution = (self.games / years_for_club) * (1/50)
         club_age = int(datetime.datetime.now().year) - self.team.founded_in
         club_titles = self.team.national_honors + self.team.international_honors
-        importance = "{:.2f}".format(((contribution * self.honors) / years_for_club) * (club_age / club_titles))
+        importance = ((contribution * self.honors) / years_for_club) * (club_age / club_titles)
+        #importance = "{:.2f}".format(((contribution * self.honors) / years_for_club) * (club_age / club_titles))
         return importance
+
+    def calculate_importance_normalized(self):
+        club_players = Player.objects.filter(team=self.team)
+        importance_list = []
+        for p in club_players:
+            importance_list.append(p.calculate_importance())
+        max_club_importance = max(importance_list)
+        normalized_importance = "{:.2f}".format(self.calculate_importance() * (10/max_club_importance))
+        return normalized_importance
 
 
 

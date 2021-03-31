@@ -1,4 +1,5 @@
 import datetime
+import operator
 
 from django.db import models
 from django.urls import reverse
@@ -57,6 +58,30 @@ class AllstarTeam(models.Model):
 
     def honorable_mentions(self):
         return self.player_set.filter(available=True, illustration='')
+
+    def most_titles(self):
+        return self.player_set.order_by('-honors')[0]
+
+    def most_games(self):
+        return self.player_set.order_by('-games')[0]
+
+    def most_goals(self):
+        return self.player_set.order_by('-goals')[0]
+
+    def calculate_importance_normalized(self):
+        club_players = Player.objects.filter(team=self)
+        importance_list = []
+        for p in club_players:
+            importance_list.append(p.calculate_importance())
+        max_club_importance = max(importance_list)
+        normalized_importance_dict = {}
+        for p in club_players:
+            try:
+                normalized_importance_dict[p.person.name] = "{:.2f}".format(p.calculate_importance() * (10 / max_club_importance))
+            except:
+                normalized_importance_dict[p.person.name] = "{:.2f}".format(0)
+        max_importance = max(normalized_importance_dict.items(), key=operator.itemgetter(1))[0]
+        return max_importance
 
     def __str__(self):
         return self.name
@@ -127,7 +152,6 @@ class Player(models.Model):
             importance = ((contribution * self.honors) / years_for_club) * (club_age / club_titles)
         except:
             importance = 0
-        #importance = "{:.2f}".format(((contribution * self.honors) / years_for_club) * (club_age / club_titles))
         return importance
 
     def calculate_importance_normalized(self):

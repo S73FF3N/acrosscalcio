@@ -20,7 +20,11 @@ class AllstarTeamView(ListView):
 
 def allstar_team_detail(request, id, slug):
     team = get_object_or_404(AllstarTeam, id=id, slug=slug)
-    return render(request, 'allstar_team_detail.html', {'team': team})
+    most_goals = team.most_goals()
+    most_games = team.most_games()
+    most_titles = team.most_titles()
+    most_influence = team.calculate_importance_normalized()
+    return render(request, 'allstar_team_detail.html', {'team': team, 'most_titles': most_titles, 'most_games': most_games, 'most_goals': most_goals, 'most_influence': most_influence })
 
 def allstar_player_detail(request, id, slug):
     player = get_object_or_404(Player, id=id, slug=slug)

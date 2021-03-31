@@ -156,6 +156,7 @@ class Player(models.Model):
 
     def calculate_importance_normalized(self):
         club_players = Player.objects.filter(team=self.team)
+        print(club_players)
         importance_list = []
         for p in club_players:
             importance_list.append(p.calculate_importance())

@@ -159,6 +159,7 @@ class Player(models.Model):
         print(club_players)
         importance_list = []
         for p in club_players:
+            print(p, p.calculate_importance())
             importance_list.append(p.calculate_importance())
         max_club_importance = max(importance_list)
         print(max_club_importance)

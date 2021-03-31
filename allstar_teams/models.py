@@ -77,9 +77,9 @@ class AllstarTeam(models.Model):
         normalized_importance_dict = {}
         for p in club_players:
             try:
-                normalized_importance_dict[p.person.name] = "{:.2f}".format(p.calculate_importance() * (10/max_club_importance))
+                normalized_importance_dict[p.person.name] = p.calculate_importance() * (10/max_club_importance)
             except:
-                normalized_importance_dict[p.person.name] = "{:.2f}".format(0)
+                normalized_importance_dict[p.person.name] = 0
         max_importance = max(normalized_importance_dict.items(), key=operator.itemgetter(1))[0]
         return max_importance
 

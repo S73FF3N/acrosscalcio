@@ -156,17 +156,12 @@ class Player(models.Model):
 
     def calculate_importance_normalized(self):
         club_players = Player.objects.filter(team=self.team)
-        print(club_players)
         importance_list = []
         for p in club_players:
-            print(p, p.calculate_importance())
             importance_list.append(p.calculate_importance())
         max_club_importance = max(importance_list)
-        print(max_club_importance)
         try:
             normalized_importance = "{:.2f}".format(self.calculate_importance() * (10/max_club_importance))
-            print(self)
-            print(self.calculate_importance())
         except:
             normalized_importance = "{:.2f}".format(0)
         return normalized_importance

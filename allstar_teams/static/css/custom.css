@@ -357,3 +357,6 @@ label {
   border-top: 4px solid #092f57;
 }
 
+.red-tooltip + .tooltip > .tooltip-inner {background-color: #edbd2b;color:#092f57;}
+.red-tooltip + .tooltip > .tooltip-arrow { border-bottom-color:#edbd2b; }
+

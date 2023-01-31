@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'widget_tweaks',
     'allstar_teams',
+    'sorare',
 
 ]
 

@@ -1,10 +1,10 @@
 import requests
 import pandas as pd
 import json
-import argparse
 
 from django.core.management.base import BaseCommand, CommandError
 from sorare.models import ScoutingResult
+from sorare.constants import league_dict, scouting_query, best_price_query
 
 class Command(BaseCommand):
     help = 'Executes Sorare API query to find the best scouting result and its price'
@@ -18,40 +18,8 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        league_dict = {
-            "BUNDESLIGA": '["bayern-munchen-munchen","borussia-dortmund-dortmund","rb-leipzig-leipzig",\
-                              "union-berlin-berlin","freiburg-freiburg-im-breisgau","eintracht-frankfurt-frankfurt-am-main",\
-                              "wolfsburg-wolfsburg","borussia-m-gladbach-monchengladbach","bayer-leverkusen-leverkusen",\
-                              "werder-bremen-bremen","mainz-05-mainz","koln-koln",\
-                              "hoffenheim-sinsheim","augsburg-augsburg","stuttgart-stuttgart",\
-                              "bochum-bochum","hertha-bsc-berlin","schalke-04-gelsenkirchen"]',
-            "SERIE_A": '["juventus-torino","napoli-castel-volturno","milan-milano",\
-                            "internazionale-milano","atalanta-ciserano","lazio-formello",\
-                            "roma-roma","udinese-udine","torino-torino",\
-                            "bologna-bologna","empoli-empoli","fiorentina-firenze",\
-                            "monza-monza","salernitana-salerno","lecce-lecce",\
-                            "spezia-la-spezia","sassuolo-sassuolo","hellas-verona-verona",\
-                            "sampdoria-genova","cremonese-cremona"]',
-        }
 
-        query = '''\
-            query {\
-              allCards(rarities:unique, positions:%s, teamSlugs:%s, first:1000) {\
-                nodes {\
-                  player {\
-                  firstName\
-                  lastName\
-                  slug\
-                  averageScore(type: LAST_FIFTEEN_SO5_AVERAGE_SCORE)\
-                  playingStatus\
-                  so5Scores(last: 5) {\
-                    score\
-                    }\
-                  }\
-                }\
-              }\
-            }\
-        ''' % (options['position'], league_dict[options['league']])
+        query = scouting_query % (options['position'], league_dict[options['league']])
 
         url = "https://api.sorare.com/graphql/"
 
@@ -93,22 +61,10 @@ class Command(BaseCommand):
         }
 
         # Query the current market offers
-        best_price_query = '''\
-            query{\
-                player(slug:"%s"){\
-                    cards(rarities:%s, first:1000){\
-                        nodes{\
-                            liveSingleSaleOffer{\
-                                price\
-                            }\
-                        }\
-                    }\
-                }\
-            }\
-        ''' % (best_scouting_result["slug"], "limited")
+        price_query = best_price_query % (best_scouting_result["slug"], "limited")
 
         # Send the request and get the response
-        response = requests.post(url, json={"query": best_price_query}, headers={
+        response = requests.post(url, json={"query": price_query}, headers={
             "APIKEY": "bcda5dc2e53c47ce3b4955e126c0d8c39eb94116f5ae4111fd826b893bbee2bad2d158c1662cbb1c5e711283f8ddb8e11aefdbb2e6cb36454c250390cd4sr128"})
 
         # Extract the data from the response and save it as a DataFrame
@@ -131,8 +87,10 @@ class Command(BaseCommand):
 
             # Convert price from WEI to ETH
             best_scouting_result["initial_floor_price_limited_ETH"] = min_price / 1000000000000000000.0
+            best_scouting_result["not_for_sale"] = False
         except:
             best_scouting_result["initial_floor_price_limited_ETH"] = 0
+            best_scouting_result["not_for_sale"] = True
 
         # Get current ETH exchange rate and calculate EUR value
         coinbase_url = "https://api.coinbase.com/v2/exchange-rates?currency=ETH"
@@ -150,5 +108,6 @@ class Command(BaseCommand):
             position=best_scouting_result["position"],
             initialFloorPriceLimitedETH=best_scouting_result["initial_floor_price_limited_ETH"],
             initialFloorPriceLimitedEUR=best_scouting_result["initial_floor_price_limited_EUR"],
+            not_for_sale=best_scouting_result["not_for_sale"]
         )
 
